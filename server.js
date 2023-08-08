@@ -2,10 +2,11 @@ const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
-// Replace 'your-database-url' with your MySQL database URL
-const sequelize = new Sequelize('mysql://username:password@localhost:3306/high_scores_db', {
+// Replace 'root' and 'Adrenagens24' with your MySQL database credentials
+const sequelize = new Sequelize('high_scores_db', 'root', 'Adrenagens24', {
+  host: 'localhost',
   dialect: 'mysql',
 });
 
@@ -49,7 +50,7 @@ app.post('/api/high-scores', async (req, res) => {
   const { playerName, score } = req.body;
   try {
     const highScore = await HighScore.create({ playerName, score });
-    res.json(highScore);
+    res.status(201).json(highScore); // Respond with the created high score
   } catch (err) {
     console.error('Error saving high score:', err);
     res.status(500).json({ message: 'Server error' });
