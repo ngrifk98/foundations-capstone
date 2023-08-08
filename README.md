@@ -8,8 +8,8 @@
 
 ## Tech Stack
 
-- **Frontend:** React
-- **Backend:** Express
+- **Front-end Framework:** React
+- **Back-end Framework:** Express.js
 - **Database:** PostgreSQL
 
 ## Features
