@@ -4,13 +4,11 @@ const { Sequelize, DataTypes } = require('sequelize');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Replace 'root' and 'Adrenagens24' with your MySQL database credentials
 const sequelize = new Sequelize('high_scores_db', 'root', 'Adrenagens24', {
   host: 'localhost',
   dialect: 'mysql',
 });
 
-// Define the HighScore model
 const HighScore = sequelize.define('HighScore', {
   playerName: {
     type: DataTypes.STRING,
@@ -22,7 +20,6 @@ const HighScore = sequelize.define('HighScore', {
   },
 });
 
-// Sync the database
 sequelize.sync().then(() => {
   console.log('Database and tables are synced!');
 }).catch((err) => {
@@ -31,7 +28,6 @@ sequelize.sync().then(() => {
 
 app.use(express.json());
 
-// Get all high scores
 app.get('/api/high-scores', async (req, res) => {
   try {
     const highScores = await HighScore.findAll({
@@ -45,7 +41,6 @@ app.get('/api/high-scores', async (req, res) => {
   }
 });
 
-// Save a new high score
 app.post('/api/high-scores', async (req, res) => {
   const { playerName, score } = req.body;
   try {

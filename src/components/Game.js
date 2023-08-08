@@ -9,7 +9,7 @@ const rowStyle = {
 const squareStyle = {
   width: "60px",
   height: "60px",
-  backgroundColor: "#006400", // Dark green color
+  backgroundColor: "#006400", 
   margin: "4px",
   display: "flex",
   justifyContent: "center",
@@ -55,17 +55,14 @@ function calculateWinner(squares) {
   const boardSize = squares.length;
   const lines = [];
 
-  // Generate horizontal winning lines
   for (let i = 0; i < boardSize; i++) {
     lines.push(Array.from({ length: boardSize }, (_, j) => i * boardSize + j));
   }
 
-  // Generate vertical winning lines
   for (let i = 0; i < boardSize; i++) {
     lines.push(Array.from({ length: boardSize }, (_, j) => i + boardSize * j));
   }
 
-  // Generate diagonal winning lines
   lines.push(Array.from({ length: boardSize }, (_, i) => i * (boardSize + 1)));
   lines.push(Array.from({ length: boardSize }, (_, i) => (i + 1) * (boardSize - 1)));
 
@@ -116,7 +113,7 @@ const Board = ({ xIsNext, squares, onPlay }) => {
   let status;
   if (winner) {
     status = "Winner: " + winner;
-    // Apply the "flash" class when a player wins
+
     if (winner === "X" || winner === "O") {
       status = <span className="flash">Winner: {winner}</span>;
     }
@@ -174,7 +171,6 @@ const createInitialSquares = (boardSize) => {
 const Game = () => {
   const location = useLocation();
 
-  // Extract boardSize from the location prop
   const { boardSize } = location?.state || { boardSize: 3 };
 
   const [history, setHistory] = useState([createInitialSquares(boardSize)]);
@@ -183,9 +179,9 @@ const Game = () => {
   const currentSquares = history[currentMove];
 
   useEffect(() => {
-    // Update the board size whenever the location state changes
+
     setHistory([createInitialSquares(boardSize)]);
-  }, [location, boardSize]);
+  }, [boardSize]);
   
   const handlePlay = (nextSquares) => {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
@@ -211,7 +207,7 @@ const Game = () => {
   return (
     <div style={containerStyle} className="gameBoard">
       <div className="game-board">
-        {/* Pass the updated boardSize to the Board component */}
+        {}
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
