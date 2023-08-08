@@ -1,0 +1,42 @@
+/* src/components/HighScores.css */
+
+.high-scores {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-text {
+  color: white;
+}
+
+.high-scores-table {
+  border-collapse: collapse;
+  width: 70%;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+}
+
+.table-header,
+.table-data {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.back-button {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}

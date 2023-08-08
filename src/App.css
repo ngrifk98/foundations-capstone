@@ -1,0 +1,124 @@
+
+.App {
+  text-align: center;
+  background-color: #000;
+  font-family: Arial, sans-serif;
+  min-height: 100vh; 
+  background-image: url('path-to-retro-arcade-background.png');
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  /* No need for background image here */
+}
+
+
+.game-header {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-family: 'Press Start 2P', cursive; /* Set the font-family to the retro arcade font */
+}
+
+
+nav {
+  margin-bottom: 20px; /* Reduce the margin at the bottom of the navigation bar */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  margin: 0 10px; /* Adjust the margin between navigation links */
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px; /* Adjust the font size of the navigation links */
+}
+
+nav a:hover {
+  color: #61dafb;
+}
+
+
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  gap: 10px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.cell {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
+
+.status {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white; /* Set the text color to white */
+}
+
+
+.restart-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.flash {
+  animation: flash 1s infinite;
+}
