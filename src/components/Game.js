@@ -1,6 +1,7 @@
 // src/components/Game.js
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import './Game.css';
 
 const rowStyle = {
   display: "flex",
@@ -170,26 +171,41 @@ const createInitialSquares = (boardSize) => {
 
 const Game = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { boardSize } = location?.state || { boardSize: 3 };
 
-  const [history, setHistory] = useState([createInitialSquares(boardSize)]);
+  const [gameHistory, setHistory] = useState([createInitialSquares(boardSize)]);
   const [currentMove, setCurrentMove] = useState(0);
+  const [showNameInput, setShowNameInput] = useState(false); 
+  const [newHighScoreName, setNewHighScoreName] = useState(''); 
   const xIsNext = currentMove % 2 === 0;
-  const currentSquares = history[currentMove];
+  const currentSquares = gameHistory[currentMove];
 
   useEffect(() => {
-
     setHistory([createInitialSquares(boardSize)]);
   }, [boardSize]);
   
   const handlePlay = (nextSquares) => {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    const nextHistory = [...gameHistory.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
+
+    const winner = calculateWinner(nextSquares);
+    if (winner) {
+      // Trigger the score-saving process when a player wins
+      setShowNameInput(true);
+      setNewHighScoreName('');
+    }
   };
 
-  const moves = history.map((squares, move) => {
+  const handleSaveScore = () => {
+    // Add logic to save the new high score with the entered name
+    setShowNameInput(false);
+    navigate('/high-scores');
+  };
+
+  const moves = gameHistory.map((squares, move) => {
     let description;
     if (move > 0) {
       description = "Go to move #" + move;
@@ -207,15 +223,26 @@ const Game = () => {
   return (
     <div style={containerStyle} className="gameBoard">
       <div className="game-board">
-        {}
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
+      {showNameInput && (
+        <div className="name-input-container">
+          <input
+            type="text"
+            placeholder="Enter your name"
+            value={newHighScoreName}
+            onChange={(e) => setNewHighScoreName(e.target.value)}
+          />
+          <button className="save-button" onClick={handleSaveScore}>
+            Save
+          </button>
+        </div>
+      )}
       <div className="game-info">
         <ol>{moves}</ol>
       </div>
     </div>
   );
 };
-
 
 export default Game;
