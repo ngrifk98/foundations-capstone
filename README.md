@@ -21,9 +21,11 @@
 - Responsive design for seamless gameplay on various devices
 
 ## Screenshots
-
+- **Game Screen**
 ![Game Screen](screenshots/game-screenshot.png)
+- **High Scores Screen**
 ![High Scores Screen](screenshots/high-scores-screenshot.png)
+- **Settings Screen**
 ![Settings Screen](screenshots/settings-screenshot.png)
 
 ## Installation

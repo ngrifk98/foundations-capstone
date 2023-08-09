@@ -8,6 +8,7 @@ const Board = ({ board, onTileClick }) => {
     return <Tile key={index} value={board[index]} onDrop={() => onTileClick(index)} />;
   };
 
+  
   return (
     <div className="board">
       {Array.from({ length: 3 }).map((_, row) => (
